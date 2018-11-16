@@ -1,0 +1,91 @@
+close all, clear all, clc
+
+% Importando os dados
+X = csvread('L_pcaOrdenadoTODOS.csv');
+classes = csvread('ProfOrdenadoTODOS.csv');
+    
+% --> Par�metros para o K-FOLD
+%X_label = [ones(29,1); 2*ones(10,1)]; %Classifica��o em 2 grupos
+X_label = [ones(10,1); 2*ones(9,1); 3*ones(10,1); 4*ones(10,1)]; %Classifica��o em 4 grupos
+nFold = 5; % N�mero de K-fold
+
+% Ordena os dados para o k-fold, separando o que ser� usado para Teste / Treino
+indicesRuins = crossvalind('Kfold', X_label(1:29,:), nFold);
+indicesBons = crossvalind('Kfold', X_label(30:end,:), nFold);
+indices = [indicesRuins; indicesBons];
+
+cp = classperf(X_label); %!!! reinitialize the cp-structure
+
+%RESULTADO = [];
+figure
+for i = 1:nFold % acessa a divis�o feita pelo crossvalind
+        
+    xtest = (indices == i); % uma das divis�es do k-fold
+    xtrain = ~xtest;         % o restante dos dados
+
+        trainInd = find(xtrain); % indices dos dados de treinamento
+        testInd = find(xtest);   % indices dos dados de teste
+
+% --> Treinamento com m�dia zero
+Xtr = X(xtrain,:); % Dados de TREINO
+TRlabel = X_label(xtrain);
+[ltrain,ctrain] = size(Xtr);
+
+ntrain = []; j = 0;
+for j = 1:ltrain
+    ntrain(j,:) = Xtr(j,:) - mean(Xtr);
+end
+
+% --> Teste sem a m�dia do conjunto de Treinamento
+Xts = X(xtest,:); % Dados de TESTE
+TSlabel = X_label(xtest);
+[ltest,ctest] = size(Xts);
+
+ntest = []; jj = 0;
+for jj = 1:ltest
+    ntest(jj,:) = Xts(jj,:) - mean(Xtr);
+end
+
+% Rodando PCA no conjunto de Treinamento
+n = (min([ltrain,ctrain])-1); % m�ximo de PCs poss�veis de extrair
+
+[Ppca, Kpca, Vpca] = ctPCA(ntrain, n); % 1�argumento: Matriz com m�dia zero
+Ytrain = ntrain * Ppca; % Projeta os dados de Treinamento nos Autovetores Ppca
+Ytest = ntest * Ppca; % Projeta os dados de Teste nos Autovetores Ppca
+
+% Rodando MLDA no conjunto de Treinamento
+[Pmlda, Kmlda, Vmlda] = ctmlda(Ytrain, 2, ...
+    [length(find(X_label(xtrain)==1))...
+    + length(find(X_label(xtrain)==2))...
+    + length(find(X_label(xtrain)==3))...
+    , length(find(X_label(xtrain)==4))], 1);
+
+Ztrain = Ytrain * Pmlda; % Projeta os dados de Treinamento nos Autovetores Pmlda
+Ztest = Ytest * Pmlda; % Projeta os dados de Teste nos Autovetores Pmlda
+
+% Plotando dados do Treinamento
+    subplot(nFold,1,i)
+    p1=plot(Ztrain(find(TRlabel==1)),0,'rx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Ruim
+    p2=plot(Ztrain(find(TRlabel==2)),0,'bx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % M�dio
+    p3=plot(Ztrain(find(TRlabel==3)),0,'gx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Melhor
+    p4=plot(Ztrain(find(TRlabel==4)),0,'kx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % BOM
+
+% Plotando dados do Teste
+for idx = find(TSlabel==1)
+    p5=plot(Ztest(idx),0,'ro', 'MarkerSize', 15, 'LineWidth', 2); hold on; % Ruim
+end
+for idx = find(TSlabel==2)
+    p6=plot(Ztest(idx),0,'bo', 'MarkerSize', 15, 'LineWidth', 2); hold on; % M�dio
+end
+for idx = find(TSlabel==3)
+    p7=plot(Ztest(idx),0,'go', 'MarkerSize', 15, 'LineWidth', 2); hold on; % Melhor
+end
+for idx = find(TSlabel==4)
+    p8=plot(Ztest(idx),0,'ko', 'MarkerSize', 15, 'LineWidth', 2); hold on; % BOM
+end
+
+% Limites
+ylim([0 1]), xlim([-11000 11000]);
+set(gca,'Ytick',[], 'Ycolor', 'none'), box off
+
+end
