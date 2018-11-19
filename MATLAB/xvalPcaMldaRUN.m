@@ -5,7 +5,7 @@ clear all, close all, clc
 X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
 
 % Par�metros
-ng = [460-23 23]; % Numero de amostras por classe
+ng = [460-230 230]; % Numero de amostras por classe
 Xlabel = [zeros(ng(1),1); ones(ng(2),1)]; % classifica��o das amostras
 nFold = 10; % Para K-FOLD - numero de K itera��es
 

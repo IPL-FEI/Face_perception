@@ -6,21 +6,12 @@ clc
 %classes = csvread('ProfOrdenadoTODOS.csv');
 % dado = csvread('PCA GENERO/L_pcaOrdenado_INTC_Alto Erro_GENERO.csv');
 % classes = csvread('PCA GENERO/ProfOrdenadoGENERO.csv');
-%% DADO
-X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
-%% Quantidade de PCs
-n = (min(size(X))-1);               %Calcula a máxima quantidade de PCs possíveis de extrair (Nsamples - 1)
-%% Normalização
-[lin, col] = size(X); dnorm = [];
-for k = 1:lin
-    dnorm(k,:) = X(k,:) - mean(X);
-end
-%% PCA
-[Ppca, Kpca, Vpca] = ctPCA(dnorm, n);
-%% MLDA
+
+dado = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
+
 % USANDO TODOS OS DADOS PARA TREINAMENTO
-[Pmlda,Kmlda,Vmlda] = ctmlda(dnorm*Ppca, 3,[115 230 115], 2)
-Y = dnorm*Ppca * Pmlda; % Projeta os dados nos Autovetores P
+[P,K,V] = ctmlda(dado, 3,[115 230 115],2); % Calcula o MLDA
+Y = dado * P; % Projeta os dados nos Autovetores P
         
     %figure,
     %title('Proje��o dos dados no eixo de discriminancia do MLDA usando Todos os dados')
@@ -60,7 +51,7 @@ Y = dnorm*Ppca * Pmlda; % Projeta os dados nos Autovetores P
     set(gca,'Ytick',[], 'Ycolor', 'none'), box off
     
 % SEPARANDO OS DADOS PARA CROSSVALIDATION
-X = X;
+X = dado;
 %X_label = [zeros(10,1); ones(10,1)]; %Classifica��o 2 classes
 %X_label = [ones(10,1); 2*ones(9,1); 3*ones(10,1); 4*ones(10,1)]; %Classifica��o
 %X_label = classes;

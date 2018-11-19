@@ -77,6 +77,6 @@ function mlda_walk(Pmlda, Nlabel, dim, Ppca, data, Z)
     %montage(vetor, 'Size', [1 7]);
     % Caso esteja usando Matlab 2015a usar:
     newimage = cell2mat(vetor');
-    figure()
+    figure('Name','MLDA_WALK')
     imshow(newimage(:, :, 1), [0 80])
 end
