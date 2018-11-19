@@ -1,8 +1,9 @@
 % =========================
-% Function that plot 2 dimension MLDA 
-% using K-mean 
+% Function that plot 2 dimension MLDA result
+% using K-means
 % 
-% 
+% ps: This function needs ctPCA and 
+%     ctmlda in your folder
 % ============
 % INPUTS:
 % Data -> Original Data (already sorted)
