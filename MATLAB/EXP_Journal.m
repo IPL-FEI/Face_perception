@@ -49,7 +49,7 @@ dim = 250;
 %
 %% ======Divisão das samples para o MLDA===
 
-Samples = [460-23 23];
+Samples = [400 400];
 
 %
 %% ========Normalização dos dados==========
