@@ -48,8 +48,8 @@ dim = 250;
 
 %
 %% ======Divisão das samples para o MLDA===
-
-Samples = [400 400];
+SamplesSimples = [34 5] %Numero de participantes = 39
+Samples = SamplesSimples*40;
 
 %
 %% ========Normalização dos dados==========
