@@ -25,7 +25,7 @@ function mlda_walk(Pmlda, Nlabel, dim, Ppca, data, Z)
         
         %=====
         if g==2
-            for j = -1:1:1  %passo da navegação
+            for j = 1:1:3  %passo da navegação
               y = j*st(g)*Pmlda + x(g)*Pmlda;
               imagem = media + Ppca*(y);
               
@@ -39,7 +39,7 @@ function mlda_walk(Pmlda, Nlabel, dim, Ppca, data, Z)
         end
         %=======
         if g==1 %
-            for j = -1:1:1  %passo da navegação
+            for j = -3:1:-1  %passo da navegação
                   y = j*st(g)*Pmlda + x(g)*Pmlda;
                   imagem = media + Ppca*(y);
 

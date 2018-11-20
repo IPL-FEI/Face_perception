@@ -58,7 +58,7 @@ end
 
 % --> PCA
 n = (min([ltrain,ctrain])-1); % maximo de PCs poss?veis de extrair
-[Ppca, ~, ~] = ctPCA(ntrain, n); % 1 argumento: Matriz com media zero
+[Ppca, ~, ~] = ctPCA(ntrain, 1); % 1 argumento: Matriz com media zero
 Ytrain = ntrain * Ppca; % Projeta os dados de Treinamento nos Autovetores Ppca
 Ytest = ntest * Ppca; % Projeta os dados de Teste nos Autovetores Ppca
 

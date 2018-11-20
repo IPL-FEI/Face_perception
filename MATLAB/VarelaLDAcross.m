@@ -2,29 +2,52 @@ close all
 clear all
 clc
 
-dado = csvread('L_pcaOrdenadoTODOS.csv');
-classes = csvread('ProfOrdenadoTODOS.csv');
-%dado = csvread('L_pcaOrdenadoTODOS35.csv');
-%classes = csvread('ProfOrdenadoTODOS35.csv');
 
+%%
+X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
 
-% USANDO TODOS OS DADOS PARA TREINAMENTO
-[P,K,V] = ctmlda(dado, 2,[10 9 10 10],1); % Calcula o LDA
-Y = dado * P; % Projeta os dados nos Autovetores P
+% 
+%% ========Extrai informações dos dados====
+
+n = (min(size(X))-1);               %Calcula a máxima quantidade de PCs possíveis de extrair (Nsamples - 1)
+
+%
+%% ======Divisão das samples para o MLDA===
+SamplesSimples = [34 5]; %Numero de participantes = 39
+Samples = SamplesSimples*40;
+
+%
+%% ========Normalização dos dados==========
+
+[lin, col] = size(X); dnorm = [];
+for k = 1:lin
+    dnorm(k,:) = X(k,:) - mean(X);
+end
+
+%
+%% ================PCA=====================
+
+[Ppca, Kpca, Vpca] = ctPCA(dnorm, 1); % 1�argumento: Matriz com m�dia zero
+
+%
+%% ================MLDA====================
+
+[Pmlda,Kmlda,Vmlda] = ctmlda(dnorm*Ppca, 2,Samples, 1); % Calcula o MLDA
+
+%
+%%
+Y = dnorm * Ppca * Pmlda; % Projeta os dados nos Autovetores P
         
     figure,
     %title('Proje��o dos dados no eixo de discriminancia do MLDA usando Todos os dados')
     %xlabel('Eixo de proje��o')
-    p1=plot(Y(1:10),0,'ro', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Ruim
-    p2=plot(Y(11:19),0,'b*', 'MarkerSize', 10, 'LineWidth', 2); hold on; % M�dio
-    p3=plot(Y(20:29),0,'g^', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Melhor
-    p4=plot(Y(30:39),0,'kx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % BOM
+    p1=plot(Y(1:1360),0,'ro', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Ruim
+    p4=plot(Y(1361:end),0,'kx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % BOM
     legend([p1(1), p2(1), p3(1), p4(1)],'1quartil','2quartil','3quartil','4quartil');
-    mQ1 = mean(Y(1:10)); mQ2 = mean(Y(11:19));
-    mQ3 = mean(Y(20:29)); mQ4 = mean(Y(30:end));
+    mQ1 = mean(Y(1:1360)); mQ4 = mean(Y(1361:end));
     plot(mQ1,0,'rx', 'MarkerSize', 30, 'LineWidth', 1); hold on;
-    plot(mQ2,0,'bx', 'MarkerSize', 30, 'LineWidth', 1); hold on;
-    plot(mQ3,0,'gx', 'MarkerSize', 30, 'LineWidth', 1); hold on;
+%     plot(mQ2,0,'bx', 'MarkerSize', 30, 'LineWidth', 1); hold on;
+%     plot(mQ3,0,'gx', 'MarkerSize', 30, 'LineWidth', 1); hold on;
     plot(mQ4,0,'kx', 'MarkerSize', 30, 'LineWidth', 1); hold off;
 
     % Limites

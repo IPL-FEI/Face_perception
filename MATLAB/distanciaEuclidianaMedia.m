@@ -1,9 +1,9 @@
 function TAXA = distanciaEuclidianaMedia(mRNM, mRM, Y)
 
-%mRNM; % Média nãomusicos
-%mRM; % Média musicos
+%mRNM; % Mï¿½dia nï¿½omusicos
+%mRM; % Mï¿½dia musicos
 
-%Y(:,1); % Vetor para calcular distância
+%Y(:,1); % Vetor para calcular distï¿½ncia
 NM = []; M = [];
 for v = 1:length(Y)
     NM(v,1) = dist(mRNM, Y(v,1));
@@ -13,15 +13,15 @@ end
 CLASS = [];
 for w = 1:length(Y)
     if NM(w,1) < M(w,1)
-        CLASS(w,1) = 1; % Não músico
+        CLASS(w,1) = 1; % Nï¿½o mï¿½sico
     else
-        CLASS(w,1) = 0; % Músico
+        CLASS(w,1) = 0; % Mï¿½sico
     end
 end
 
 %GROUP = [0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1]; % 13-13
 %GROUP = [0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1]; % 13 - 12
-GROUP = [0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1]; %10 -10
+% GROUP = [0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1]; %10 -10
 
 FIM = [CLASS GROUP'];
 
