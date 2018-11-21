@@ -48,7 +48,11 @@ dim = 250;
 
 %
 %% ======Divisão das samples para o MLDA===
+<<<<<<< HEAD
 SamplesSimples = [19 20]; %Numero de participantes = 39
+=======
+SamplesSimples = [34 5] %Numero de participantes = 39
+>>>>>>> master
 Samples = SamplesSimples*40;
 
 %
