@@ -1,4 +1,4 @@
-function [rr, Pstd, Kstd, Pzhu, Kzhu, Pmlda, Kmlda, Psvm, Ksvm] = kfoldpca(X1,X2,Y1,Y2,npca)
+function [rr, Pstd, Pzhu, Pmlda, Psvm] = kfoldpca(X1,X2,Y1,Y2,npca)
 % rr = kfoldpca(X1,X2,Y1,Y2,npca)
 %
 % X1 - Training data matrix of sample group 1
@@ -35,7 +35,7 @@ disp(sprintf('m=%d,n=%d,npca=%d,mX1=%d,mX2=%d,mY1=%d,mY2=%d:',...
 disp('Calculating standard PCA...');
 M = mean(X);
 for i = 1:size(X,1), X(i,:) = X(i,:) - M; end
-[P,Kpca] = pca(X,npca);
+[P,Kpca,Vpca] = pca(X,npca);
 
 disp('Projecting training data matrix on the standard PCA subspace...');
 Xpca = X * P;
