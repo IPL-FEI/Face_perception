@@ -35,7 +35,7 @@ close all, clear all, clc
 
 %% Data
 
-X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
+X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
 
 % 
 %% ========Extrai informações dos dados====
@@ -51,7 +51,7 @@ dim = 250;
 
 SamplesSimples = [19 20]; %Numero de participantes = 39
 %=======
-SamplesSimples = [34 5] %Numero de participantes = 39
+SamplesSimples = [10 10] %Numero de participantes = 39
 
 Samples = SamplesSimples*40;
 
@@ -70,6 +70,7 @@ end
 
 %
 %% ================MLDA====================
+
 
 [Pmlda,Kmlda,Vmlda] = ctmlda(dnorm*Ppca, 2,Samples, 1); % Calcula o MLDA
 

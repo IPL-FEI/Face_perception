@@ -1,6 +1,7 @@
 %% Load Data
+clc, clear all, close all
 
-X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
+X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
 
 % 
 
@@ -15,9 +16,9 @@ dim = 250;
 %
 %% ======Divisão das samples para o MLDA===
 
-SamplesSimples = [19 20]; %Numero de participantes = 39
+% SamplesSimples = [19 20]; %Numero de participantes = 39
 %=======
-SamplesSimples = [19 20]; %Numero de participantes = 39
+SamplesSimples = [10 10]; %Numero de participantes = 39
 
 Samples = SamplesSimples*40;
 
@@ -32,11 +33,11 @@ end
 %% Calculo dos d-pca
 
 %Dados de treino grupo 1:
-X1 = dnorm(1:18*40,:);
-X2 = dnorm(19*40+1:38*40,:);
+X1 = X(2*40+1:10*40,:);
+X2 = X(10*40+1:18*40,:);
 
-Y1 = dnorm(18*40+1:19*40,:);
-Y2 = dnorm(38*40:end,:);
+Y1 = X(1:2*40,:);
+Y2 = X(18*40+1:end,:);
 
 npca = size(X1,1) +  size(X2,1) - 1;
 [rr, Pstd, Kstd, Pzhu, Kzhu, Pmlda, Kmlda, Psvm, Ksvm] = kfoldpca(X1,X2,Y1,Y2,npca);
@@ -44,4 +45,5 @@ npca = size(X1,1) +  size(X2,1) - 1;
 %Vector training set
 Xp = [X1;X2]; 
 %%
-pca_walk(Xp, Kmlda, Pmlda, dim, 5)
+pca_walk(X, Kstd, Pstd, dim, 5)
+%%

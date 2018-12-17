@@ -35,8 +35,8 @@ disp(sprintf('m=%d,n=%d,npca=%d,mX1=%d,mX2=%d,mY1=%d,mY2=%d:',...
 disp('Calculating standard PCA...');
 M = mean(X);
 for i = 1:size(X,1), X(i,:) = X(i,:) - M; end
-[P,Kpca] = pca(X,npca);
-
+[P,Kpca,Vpca] = pca(X,npca);
+Vpca
 disp('Projecting training data matrix on the standard PCA subspace...');
 Xpca = X * P;
 
@@ -57,10 +57,12 @@ wsvm = ssvm(Xpca,[ones(mX1,1);-ones(mX2,1)]);
 [v,izhu] = sort(abs(wzhu));
 [v,imlda] = sort(abs(wmlda));
 [v,isvm] = sort(abs(wsvm));
-
-izhu = flipud(izhu);
-imlda = flipud(imlda);
-isvm = flipud(isvm);
+disp('izhu')
+izhu = flipud(izhu)
+disp('mlda')
+imlda = flipud(imlda)
+disp('svm')
+isvm = flipud(isvm)
 
 Kstd  = Kpca(1:npca);               % most expressive eigenvalues
 Kzhu  = Kpca(izhu(1:npca));         % most discriminant eigenvalues (Zhu)
