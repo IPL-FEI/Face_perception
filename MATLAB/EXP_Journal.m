@@ -1,7 +1,6 @@
 %Experimento para Journal
 close all, clear all, clc
 
-
 % %% =========Importando os dados===========
 % X1 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img1_GFMT.csv');
 % X2 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img2_GFMT.csv');
@@ -35,8 +34,9 @@ close all, clear all, clc
 
 %% Data
 
-X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
-
+% X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
+  X = csvread ('~/Dropbox/Journal/Individuals/18_GFMT.csv');
+  disp('Data ready')
 % 
 %% ========Extrai informações dos dados====
 
@@ -51,7 +51,7 @@ dim = 250;
 
 SamplesSimples = [19 20]; %Numero de participantes = 39
 %=======
-SamplesSimples = [10 10] %Numero de participantes = 39
+SamplesSimples = [10 10]; %Numero de participantes = 39
 
 Samples = SamplesSimples*40;
 
@@ -77,7 +77,7 @@ end
 %
 %% ============Navegação PCA===============
 
-% pca_walk(X, Kpca, Ppca, dim, 5)
+pca_walk(X, Kpca, Ppca, dim, 5)
 
 %
 %% ===========Navegação MLDA===============

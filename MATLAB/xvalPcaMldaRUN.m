@@ -2,14 +2,14 @@ clear all, close all, clc
 
 %% Dados / Par�metros
 % Dados
-X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
+X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
 
 % Par�metros
 
-Nparticipants = [34 5];
+Nparticipants = [10 10];
 ng = [Nparticipants(1)*40 Nparticipants(2)*40]; % Numero de amostras por classe
 
-ng = [1560/2 1560/2]; % Numero de amostras por classe
+%ng = [1560/2 1560/2]; % Numero de amostras por classe
 
 Xlabel = [zeros(ng(1),1); ones(ng(2),1)]; % classifica��o das amostras
 nFold = 5; % Para K-FOLD - numero de K itera��es
