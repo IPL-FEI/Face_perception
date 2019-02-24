@@ -35,7 +35,7 @@ close all, clear all, clc
 %% Data
 
 %      X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
-   X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_GOOD_GFMT.csv');
+% %    X = csvread ('~/Dropbox/Journal/Individuals/3_GFMT.csv');
   disp('Data ready')
 % 
 %% ========Extrai informações dos dados====
@@ -67,7 +67,7 @@ end
 %% ================PCA=====================
 
 [Ppca, Kpca, Vpca] = ctPCA(dnorm, n); % 1�argumento: Matriz com m�dia zero
-disp(Vpca(1))
+disp(Vpca)
 %
 %% ================MLDA====================
 
