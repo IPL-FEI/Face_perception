@@ -35,7 +35,8 @@ close all, clear all, clc
 %% Data
 
 %      X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
-   X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_GOOD_GFMT.csv');
+   X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_BAD_GFMT.csv');
+%      X = csvread ('~/Dropbox/Journal/Individuals/18_GFMT.csv');
   disp('Data ready')
 % 
 %% ========Extrai informações dos dados====
@@ -77,7 +78,7 @@ disp(Vpca(1))
 %
 %% ============Navegação PCA===============
 %       (Data, K1, P1,dim, n)
-pca_walk(X, Kpca, Ppca, dim, 5)
+pca_walk(X, Kpca, Ppca, dim, 1)
 
 %
 %% ===========Navegação MLDA===============
@@ -111,6 +112,7 @@ EVAL = Evaluate(Actual,Predicted)
 PCA_1 = dnorm * Ppca(:,1);
 % getting first pca component
 figure,
-p1=plot(PCA_1,0,'ro', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Ruim
+p1=plot(PCA_1,0,'kx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Ruim
 PCA_1_mQ1 = mean(PCA_1);
 plot(PCA_1_mQ1,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);
+xlim auto
