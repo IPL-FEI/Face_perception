@@ -1,42 +1,11 @@
 %Experimento para Journal
 close all, clear all, clc
 
-% %% =========Importando os dados===========
-% X1 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img1_GFMT.csv');
-% X2 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img2_GFMT.csv');
-% X3 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img3_GFMT.csv');
-% X4 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img4_GFMT.csv');
-% X5 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img5_GFMT.csv');
-% X6 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img6_GFMT.csv');
-% X7 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img7_GFMT.csv');
-% X8 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img8_GFMT.csv');
-% X9 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img9_GFMT.csv');
-% X10 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img10_GFMT.csv');
-% X11 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img11_GFMT.csv');
-% X12 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img12_GFMT.csv');
-% X13 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img13_GFMT.csv');
-% X14 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img14_GFMT.csv');
-% X15 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img15_GFMT.csv');
-% X16 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img16_GFMT.csv');
-% X17 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img17_GFMT.csv');
-% X18 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img18_GFMT.csv');
-% X19 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img19_GFMT.csv');
-% X20 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img20_GFMT.csv');
-% X21 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img21_GFMT.csv');
-% X22 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img22_GFMT.csv');
-% X23 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img23_GFMT.csv');
-% %X35 = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/img35_GFMT.csv');
-% 
-% %%============Media dos dados=============
-% 
-% SOMA = X1+ X2+ X3+ X4+ X5+ X6+ X7+ X8+ X9+ X10+X11+ X12+ X13+ X14+ X15+ X16+ X17+ X18+ X19+ X20+ X21+ X22+ X23;
-% X = SOMA/23; %Media das estrategias oculares dos varios dados
-
 %% Data
 
-%      X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
-   X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_BAD_GFMT.csv');
-%      X = csvread ('~/Dropbox/Journal/Individuals/18_GFMT.csv');
+     X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
+%      X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_GOOD_GFMT.csv');
+%      X = csvread ('~/Dropbox/Journal/Individuals/30_GFMT.csv');
   disp('Data ready')
 % 
 %% ========Extrai informações dos dados====
