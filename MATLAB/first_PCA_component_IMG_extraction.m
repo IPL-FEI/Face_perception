@@ -3,8 +3,8 @@
 close all, clear all, clc
 %% ============ Data ==================
 
-%      X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
-     X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
+     X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
+%       = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
 %      X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_GOOD_GFMT.csv');
 %      X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_BAD_GFMT.csv'); 
 %      X = csvread ('~/Dropbox/Journal/Individuals/30_GFMT.csv');
@@ -35,7 +35,7 @@ disp(Vpca(1))
 pca_walk(X, Kpca, Ppca, dim, 1)
 
 %% ======= First PCA component ========
-PCA_1 = dnorm * Ppca(:,5);
+PCA_1 = dnorm * Ppca(:,1);
 % getting first pca component
 figure,
 p1=plot(PCA_1,0,'kx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Ruim
@@ -46,7 +46,9 @@ xlim auto
 %% ============================= TEST AREA==================================== %%
 
 %% Individual Processing
-list = [30,7,27,20,6,38,15,14,33,41,31, 25,29,32,11,37,2,17,24,26,40,12,10,5,22,28,1,4,39,19,23,13,35,36,16,21,18,9,3];
+% list = [30,7,27,20,6,38,15,14,33,41,31, 25,29,32,11,37,2,17,24,26,40,12,10,5,22,28,1,4,39,19,23,13,35,36,16,21,18,9,3];
+list = [30,7,27,20,6,38,15,14,33,41,31, 25,29,32,11,37,2,17,24,26,40,12,10,5,22,28,4,39,19,23,13,35,36,16,21,18,9,3];
+% list = [30,7,27,20,6,38,15,14,33,41,19,23,13,35,36,16,21,18,9,3]
 [linL,colL] = size(list);
 means = [];
 figure,
@@ -65,10 +67,10 @@ for i = 1:colL
     PCA_Individual = dnorm2 * Ppca(:,1);
     % getting first pca component
     subplot(colL,1,i),
-    p1=plot(PCA_Individual,0,'kx', 'MarkerSize', 10, 'LineWidth', 2); hold on; % Ruim
+    p1=plot(PCA_Individual,0,'kx', 'MarkerSize', 5, 'LineWidth', 2); hold on; % Ruim
     PCA_1_mQ1 = mean(PCA_1); PCA_Individual_mQ2 = mean(PCA_Individual);
 %     plot(PCA_1_mQ1,0,'rx', 'MarkerSize', 30, 'LineWidth', 1); hold on;
-    plot(PCA_Individual_mQ2,0,'bx', 'MarkerSize', 30 , 'LineWidth',1)
+    plot(PCA_Individual_mQ2,0,'rx', 'MarkerSize', 20 , 'LineWidth',1)
     xlim([-1000 1000]);hold on;
     
     means = [means, PCA_Individual_mQ2];
@@ -87,7 +89,7 @@ means_9 = mean(means(25:27));
 means_10 = mean(means(28:30));
 means_11 = mean(means(31:33));
 means_12 = mean(means(34:36));
-means_13 = mean(means(37:39));
+means_13 = mean(means(37:38));
 
 figure()
 subplot(13,1,1)
@@ -106,13 +108,13 @@ subplot(13,1,7)
 plot(means_7,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
 subplot(13,1,8)
 plot(means_8,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
-subplot(13,1,12)
-plot(means_9,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
-subplot(13,1,11)
-plot(means_10,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
 subplot(13,1,9)
-plot(means_11,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
+plot(means_9,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
 subplot(13,1,10)
+plot(means_10,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
+subplot(13,1,11)
+plot(means_11,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
+subplot(13,1,12)
 plot(means_12,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
 subplot(13,1,13)
 plot(means_13,0,'rx', 'MarkerSize', 30, 'LineWidth', 1);xlim([-1000 1000]); hold on;
