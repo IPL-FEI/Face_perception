@@ -1,15 +1,15 @@
 % Code to Check all the first PCA components and save on a file
 
 close all, clear all, clc
-%% ============ Data ==================
-
-     X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
-%       = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
-%      X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_GOOD_GFMT.csv');
-%      X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_BAD_GFMT.csv'); 
-%      X = csvread ('~/Dropbox/Journal/Individuals/30_GFMT.csv');
-    disp('Data ready')
+%% ============ Data Linux ==================
 % 
+%      X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_BxR_GFMT.csv');
+% %      X = csvread ('~/Dropbox/Journal/VETOR_IMAGENS/imgCONCATENADA_GFMT.csv');
+% %      X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_GOOD_GFMT.csv');
+% %      X = csvread ('~/Dropbox/Journal/Individuals/imgCONCATENADA_BAD_GFMT.csv'); 
+% %      X = csvread ('~/Dropbox/Journal/Individuals/30_GFMT.csv');
+%     disp('Data ready')
+
 %% ======= Extract data information ===
 
 n = (min(size(X))-1);               %Calcula a máxima quantidade de PCs possíveis de extrair (Nsamples - 1)
